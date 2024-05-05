@@ -20,7 +20,7 @@ from migrations.strictness_level_migration import config
 
 REPO_ROOT = "../../../../../"
 AIRBYTE_REPO = Repo(REPO_ROOT)
-environment = Environment(loader=FileSystemLoader(utils.MIGRATIONS_FOLDER))
+environment = Environment(loader=FileSystemLoader(utils.MIGRATIONS_FOLDER), autoescape=True)
 PR_TEMPLATE = environment.get_template(f"{config.MODULE_NAME}/pr.md.j2")
 
 parser = argparse.ArgumentParser(description="Create PRs for a list of connectors from a template.")

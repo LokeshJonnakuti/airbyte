@@ -19,7 +19,7 @@ from jinja2 import Environment, FileSystemLoader
 from migrations.strictness_level_migration import config
 
 logging.basicConfig(level=logging.DEBUG)
-environment = Environment(loader=FileSystemLoader(utils.MIGRATIONS_FOLDER))
+environment = Environment(loader=FileSystemLoader(utils.MIGRATIONS_FOLDER), autoescape=True)
 
 parser = argparse.ArgumentParser(description="Create issues for a list of connectors from a template.")
 utils.add_dry_param(parser)
