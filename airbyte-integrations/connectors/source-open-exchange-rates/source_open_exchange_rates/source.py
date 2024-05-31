@@ -113,7 +113,7 @@ class SourceOpenExchangeRates(AbstractSource):
         try:
             auth = TokenAuthenticator(token=config["app_id"], auth_method="Token").get_auth_header()
 
-            resp = requests.get(f"{OpenExchangeRates.url_base}usage.json", headers=auth)
+            resp = requests.get(f"{OpenExchangeRates.url_base}usage.json", headers=auth, timeout=60)
             status = resp.status_code
 
             logger.info(f"Ping response code: {status}")

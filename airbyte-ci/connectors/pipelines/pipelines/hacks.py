@@ -39,7 +39,7 @@ async def cache_latest_cdk(dagger_client: Client, pip_cache_volume_name: str = "
     # In other words: we only update the pip cache when the latest CDK version changes.
     # When the CDK version does not change, the pip cache is not updated as the with_exec command remains the same.
     cdk_pypi_url = "https://pypi.org/pypi/airbyte-cdk/json"
-    response = requests.get(cdk_pypi_url)
+    response = requests.get(cdk_pypi_url, timeout=60)
     response.raise_for_status()
     package_info = response.json()
     cdk_latest_version = package_info["info"]["version"]

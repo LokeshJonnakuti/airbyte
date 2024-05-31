@@ -13,7 +13,7 @@ CONNECTOR_REGISTRY_URL = "https://connectors.airbyte.com/files/registries/v0/oss
 
 
 def download_and_parse_registry_json():
-    response = requests.get(CONNECTOR_REGISTRY_URL)
+    response = requests.get(CONNECTOR_REGISTRY_URL, timeout=60)
     response.raise_for_status()
     return response.json()
 

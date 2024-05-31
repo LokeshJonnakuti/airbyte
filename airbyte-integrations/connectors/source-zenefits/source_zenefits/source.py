@@ -159,7 +159,7 @@ class SourceZenefits(AbstractSource):
         url = "https://api.zenefits.com/core/people"
 
         try:
-            session = requests.get(url, headers=headers)
+            session = requests.get(url, headers=headers, timeout=60)
             session.raise_for_status()
             return True, None
         except requests.exceptions.RequestException as e:

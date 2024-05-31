@@ -44,7 +44,7 @@ def test_next_page_token(stream_args, requests_mock):
     with patch.object(stream, "_get_filters", return_value=stream_filters) as mock_method:
         url = f"{stream.url_base}{stream.path()}"
         requests_mock.get(url, json={stream.name: [{"id": 123}]})
-        response = requests.get(url)
+        response = requests.get(url, timeout=60)
         assert stream.next_page_token(response) == 2
         mock_method.assert_called()
 
@@ -70,7 +70,7 @@ def test_parse_response(stream, response, expected, stream_args, requests_mock):
     with patch.object(stream, "_get_filters", return_value=stream_filters) as mock_method:
         url = f"{stream.url_base}{stream.path()}"
         requests_mock.get(url, json={stream.object_name: response})
-        _resp = requests.get(url)
+        _resp = requests.get(url, timeout=60)
         assert list(stream.parse_response(_resp)) == expected
         mock_method.assert_called()
 

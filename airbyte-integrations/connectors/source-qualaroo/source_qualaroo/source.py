@@ -58,7 +58,7 @@ class SourceQualaroo(AbstractSource):
 
             authenticator = self._get_authenticator(config)
 
-            response = requests.get(url, headers=authenticator.get_auth_header())
+            response = requests.get(url, headers=authenticator.get_auth_header(), timeout=60)
 
             response.raise_for_status()
             available_surveys = {row.get("id") for row in response.json()}

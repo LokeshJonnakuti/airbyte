@@ -107,7 +107,7 @@ def test_should_retry_on_max_rate_limit_error(requests_mock, test_response, stat
     stream = Boards(config=MagicMock())
     url = "https://api.pinterest.com/v5/boards"
     requests_mock.get("https://api.pinterest.com/v5/boards", json=test_response, status_code=status_code)
-    response = requests.get(url)
+    response = requests.get(url, timeout=60)
     result = stream.should_retry(response)
     assert result == expected
 
@@ -128,7 +128,7 @@ def test_backoff_on_rate_limit_error(requests_mock, test_response, status_code, 
         status_code=status_code,
     )
 
-    response = requests.get(url)
+    response = requests.get(url, timeout=60)
     result = stream.backoff_time(response)
     assert result == expected
 

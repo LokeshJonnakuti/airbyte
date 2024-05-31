@@ -102,7 +102,7 @@ class SourceYounium(AbstractSource):
 
         payload = f"grant_type=password&client_id=apiclient&username={config['username']}&password={config['password']}&scope={scope}"
         headers = {"Content-Type": "application/x-www-form-urlencoded"}
-        response = requests.request("POST", url, headers=headers, data=payload)
+        response = requests.request("POST", url, headers=headers, data=payload, timeout=60)
         response.raise_for_status()
         access_token = response.json()["access_token"]
 

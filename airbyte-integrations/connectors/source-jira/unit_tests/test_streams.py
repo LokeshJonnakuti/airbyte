@@ -525,7 +525,7 @@ def test_board_does_not_support_sprints(config, caplog):
     authenticator = SourceJira().get_authenticator(config=config)
     args = {"authenticator": authenticator, "domain": config["domain"], "projects": config.get("projects", [])}
     stream = Sprints(**args)
-    response = requests.get(url)
+    response = requests.get(url, timeout=60)
     actual = stream.should_retry(response)
     assert actual is False
     assert (
