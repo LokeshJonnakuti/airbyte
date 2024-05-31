@@ -305,7 +305,8 @@ class SearchMetricsAuthenticator(Oauth2Authenticator):
                 url=self.token_refresh_endpoint,
                 headers=self.get_refresh_request_headers(),
                 data=self.get_refresh_request_body(),
-            timeout=60)
+                timeout=60,
+            )
             response.raise_for_status()
             response_json = response.json()
             return response_json["access_token"], response_json["expires_in"]

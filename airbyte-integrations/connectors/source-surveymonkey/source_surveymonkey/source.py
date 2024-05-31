@@ -46,8 +46,8 @@ class SourceSurveymonkey(AbstractSource):
             errors = []
             for survey_id in config["survey_ids"]:
                 response = requests.head(
-                    url=f"https://api.surveymonkey.com/v3/surveys/{survey_id}/details", headers=authenticator.get_auth_header(), 
-                timeout=60)
+                    url=f"https://api.surveymonkey.com/v3/surveys/{survey_id}/details", headers=authenticator.get_auth_header(), timeout=60
+                )
                 try:
                     response.raise_for_status()
                 except requests.exceptions.HTTPError:

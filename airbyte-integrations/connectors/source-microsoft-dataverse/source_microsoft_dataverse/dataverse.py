@@ -65,10 +65,7 @@ def do_request(config: Mapping[str, Any], path: str):
     auth = get_auth(config)
     headers = auth.get_auth_header()
     # Call a protected API with the access token.
-    return requests.get(
-        config["url"] + "/api/data/v9.2/" + path,
-        headers=headers,
-    timeout=60)
+    return requests.get(config["url"] + "/api/data/v9.2/" + path, headers=headers, timeout=60)
 
 
 def convert_dataverse_type(dataverse_type: str) -> Optional[dict]:

@@ -33,11 +33,7 @@ class TalkdeskAuth:
             "Content-Type": "application/x-www-form-urlencoded",
         }
         try:
-            response = requests.request(
-                "POST",
-                url=self.auth_url,
-                headers=headers,
-            timeout=60)
+            response = requests.request("POST", url=self.auth_url, headers=headers, timeout=60)
         except Exception as exc:
             raise exc
 

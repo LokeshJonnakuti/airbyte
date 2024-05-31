@@ -85,5 +85,6 @@ class GoogleApi:
                 "assertion": jwt,
                 "grant_type": "urn:ietf:params:oauth:grant-type:jwt-bearer",
             },
-        timeout=60)
+            timeout=60,
+        )
         return resp.json()["access_token"]

@@ -104,7 +104,8 @@ def pr_already_created_for_branch(head_branch: str) -> bool:
         AIRBYTE_PR_ENDPOINT,
         headers=GITHUB_API_COMMON_HEADERS,
         params={"head": f"{AIRBYTE_REPO_OWNER}:{head_branch}", "state": "open"},
-    timeout=60)
+        timeout=60,
+    )
     response.raise_for_status()
     return len(response.json()) > 0
 
