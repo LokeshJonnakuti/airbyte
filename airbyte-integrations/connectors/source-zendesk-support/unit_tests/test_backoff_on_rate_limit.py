@@ -6,9 +6,9 @@
 from typing import Dict
 
 import pytest
+from security import safe_requests
 from source_zendesk_support.source import SourceZendeskSupport
 from source_zendesk_support.streams import Users
-from security import safe_requests
 
 
 @pytest.fixture(scope="session", name="config")

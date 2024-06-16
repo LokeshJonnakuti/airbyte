@@ -15,6 +15,7 @@ import requests
 from pydash.objects import get, set_
 from pytablewriter import MarkdownTableWriter
 from ruamel.yaml import YAML
+from security import safe_requests
 
 from .constants import (
     AIRBYTE_GITHUB_REPO_URL,
@@ -30,7 +31,6 @@ from .constants import (
     PR_LABELS,
 )
 from .models import ConnectorQAReport
-from security import safe_requests
 
 logger = logging.getLogger(__name__)
 
@@ -101,7 +101,8 @@ def push_branch(airbyte_repo: git.Repo, branch: str):
 
 
 def pr_already_created_for_branch(head_branch: str) -> bool:
-    response = safe_requests.get(AIRBYTE_PR_ENDPOINT,
+    response = safe_requests.get(
+        AIRBYTE_PR_ENDPOINT,
         headers=GITHUB_API_COMMON_HEADERS,
         params={"head": f"{AIRBYTE_REPO_OWNER}:{head_branch}", "state": "open"},
     )

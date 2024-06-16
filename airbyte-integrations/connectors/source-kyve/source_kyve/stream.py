@@ -11,8 +11,8 @@ import requests
 from airbyte_cdk.sources.streams import IncrementalMixin
 from airbyte_cdk.sources.streams.core import package_name_from_class
 from airbyte_cdk.sources.streams.http import HttpStream
-from source_kyve.util import CustomResourceSchemaLoader
 from security import safe_requests
+from source_kyve.util import CustomResourceSchemaLoader
 
 logger = logging.getLogger("airbyte")
 

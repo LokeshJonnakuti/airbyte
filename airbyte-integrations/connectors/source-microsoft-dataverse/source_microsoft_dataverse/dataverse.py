@@ -4,6 +4,7 @@
 
 from enum import Enum
 from typing import Any, Mapping, MutableMapping, Optional
+
 from airbyte_cdk.sources.streams.http.requests_native_auth.oauth import Oauth2Authenticator
 from security import safe_requests
 
@@ -64,7 +65,8 @@ def do_request(config: Mapping[str, Any], path: str):
     auth = get_auth(config)
     headers = auth.get_auth_header()
     # Call a protected API with the access token.
-    return safe_requests.get(config["url"] + "/api/data/v9.2/" + path,
+    return safe_requests.get(
+        config["url"] + "/api/data/v9.2/" + path,
         headers=headers,
     )
 

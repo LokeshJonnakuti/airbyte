@@ -11,6 +11,7 @@ from unittest.mock import MagicMock
 import pytest
 import requests
 from airbyte_cdk.models import SyncMode
+from security import safe_requests
 from source_okta.source import (
     CustomRoles,
     GroupMembers,
@@ -24,7 +25,6 @@ from source_okta.source import (
     UserRoleAssignments,
     Users,
 )
-from security import safe_requests
 
 
 @pytest.fixture

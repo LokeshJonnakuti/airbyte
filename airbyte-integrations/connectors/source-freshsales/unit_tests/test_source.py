@@ -5,8 +5,8 @@
 from unittest.mock import MagicMock, patch
 
 import pytest
-from source_freshsales.source import Contacts, FreshsalesStream, OpenDeals, OpenTasks, SourceFreshsales
 from security import safe_requests
+from source_freshsales.source import Contacts, FreshsalesStream, OpenDeals, OpenTasks, SourceFreshsales
 
 
 def test_get_input_stream_args(config):

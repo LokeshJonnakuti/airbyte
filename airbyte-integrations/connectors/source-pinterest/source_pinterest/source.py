@@ -13,6 +13,7 @@ from airbyte_cdk.sources import AbstractSource
 from airbyte_cdk.sources.streams import Stream
 from airbyte_cdk.sources.streams.http.auth import Oauth2Authenticator
 from airbyte_cdk.utils import AirbyteTracedException
+from security import safe_requests
 from source_pinterest.reports import CampaignAnalyticsReport
 
 from .streams import (
@@ -31,7 +32,6 @@ from .streams import (
     PinterestStream,
     UserAccountAnalytics,
 )
-from security import safe_requests
 
 
 class SourcePinterest(AbstractSource):

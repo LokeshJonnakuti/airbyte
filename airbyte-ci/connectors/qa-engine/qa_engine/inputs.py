@@ -8,9 +8,9 @@ from importlib.resources import files
 from typing import Optional
 
 import pandas as pd
+from security import safe_requests
 
 from .constants import CONNECTOR_TEST_SUMMARY_URL
-from security import safe_requests
 
 LOGGER = logging.getLogger(__name__)
 

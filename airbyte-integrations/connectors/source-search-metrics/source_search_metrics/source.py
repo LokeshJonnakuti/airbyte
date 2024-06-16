@@ -12,9 +12,9 @@ from airbyte_cdk.sources import AbstractSource
 from airbyte_cdk.sources.streams import Stream
 from airbyte_cdk.sources.streams.http import HttpStream
 from airbyte_cdk.sources.streams.http.auth import Oauth2Authenticator
+from security import safe_requests
 
 from .utils import to_datetime_str
-from security import safe_requests
 
 
 class SearchMetricsStream(HttpStream, ABC):

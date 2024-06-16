@@ -8,6 +8,7 @@ from airbyte_cdk.models import SyncMode
 from airbyte_cdk.utils.traced_exception import AirbyteTracedException
 from requests.exceptions import HTTPError
 from responses import matchers
+from security import safe_requests
 from source_jira.source import SourceJira
 from source_jira.streams import (
     ApplicationRoles,
@@ -58,7 +59,6 @@ from source_jira.streams import (
     WorkflowStatuses,
 )
 from source_jira.utils import read_full_refresh
-from security import safe_requests
 
 
 @responses.activate

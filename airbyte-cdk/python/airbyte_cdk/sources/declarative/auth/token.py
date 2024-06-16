@@ -237,7 +237,8 @@ class LegacySessionTokenAuthenticator(DeclarativeAuthenticator):
 
     def is_valid_session_token(self) -> bool:
         try:
-            response = safe_requests.get(f"{self._api_url.eval(self.config)}{self._validate_session_url.eval(self.config)}",
+            response = safe_requests.get(
+                f"{self._api_url.eval(self.config)}{self._validate_session_url.eval(self.config)}",
                 headers={self.auth_header: self._session_token.eval(self.config)},
             )
             response.raise_for_status()

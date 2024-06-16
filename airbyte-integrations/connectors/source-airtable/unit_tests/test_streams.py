@@ -7,8 +7,8 @@ from unittest.mock import MagicMock
 
 import pytest
 import requests
-from source_airtable.streams import URL_BASE, AirtableBases, AirtableStream, AirtableTables
 from security import safe_requests
+from source_airtable.streams import URL_BASE, AirtableBases, AirtableStream, AirtableTables
 
 
 class TestBases:

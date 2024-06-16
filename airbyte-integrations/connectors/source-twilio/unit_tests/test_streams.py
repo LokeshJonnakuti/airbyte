@@ -9,6 +9,7 @@ import pendulum
 import pytest
 from airbyte_cdk.sources.streams.http import HttpStream
 from freezegun import freeze_time
+from security import safe_requests
 from source_twilio.auth import HttpBasicAuthenticator
 from source_twilio.source import SourceTwilio
 from source_twilio.streams import (
@@ -24,7 +25,6 @@ from source_twilio.streams import (
     UsageRecords,
     UsageTriggers,
 )
-from security import safe_requests
 
 TEST_CONFIG = {
     "account_sid": "airbyte.io",

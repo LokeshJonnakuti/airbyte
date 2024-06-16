@@ -42,7 +42,8 @@ class AuthenticatorFacebookPageAccessToken(NoAuth):
         # token it would be no problem unless it has wrong page ID.
         # https://developers.facebook.com/docs/pages/access-tokens#get-a-page-access-token
         try:
-            r = safe_requests.get(f"https://graph.facebook.com/{self._page_id}", params={"fields": "access_token", "access_token": self._access_token}
+            r = safe_requests.get(
+                f"https://graph.facebook.com/{self._page_id}", params={"fields": "access_token", "access_token": self._access_token}
             )
             if r.status_code != HTTPStatus.OK:
                 raise HTTPError(r.text)

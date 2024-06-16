@@ -14,9 +14,9 @@ from airbyte_cdk.models import SyncMode
 from airbyte_cdk.sources.streams import Stream
 from google.oauth2.credentials import Credentials
 from googleapiclient.discovery import build
+from security import safe_requests
 
 from .fields import API_REPORT_BUILDER_MAPPING, sanitize
-from security import safe_requests
 
 # Mapping between the schema names and the report types in the report builder
 REPORT_TYPE_MAPPING = {

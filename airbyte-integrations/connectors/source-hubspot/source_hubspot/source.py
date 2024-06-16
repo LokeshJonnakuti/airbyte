@@ -6,10 +6,12 @@ import logging
 from http import HTTPStatus
 from itertools import chain
 from typing import Any, List, Mapping, Optional, Tuple
+
 from airbyte_cdk.logger import AirbyteLogger
 from airbyte_cdk.sources import AbstractSource
 from airbyte_cdk.sources.streams import Stream
 from requests import HTTPError
+from security import safe_requests
 from source_hubspot.errors import HubspotInvalidAuth
 from source_hubspot.streams import (
     API,
@@ -45,7 +47,6 @@ from source_hubspot.streams import (
     Tickets,
     Workflows,
 )
-from security import safe_requests
 
 
 class SourceHubspot(AbstractSource):

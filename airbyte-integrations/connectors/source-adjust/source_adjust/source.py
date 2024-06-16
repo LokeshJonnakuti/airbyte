@@ -183,7 +183,8 @@ class SourceAdjust(AbstractSource):
         :return: (True, None) on connecton to the API successfully,
                  (False, error) otherwise.
         """
-        safe_requests.get(url=self.check_endpoint,
+        safe_requests.get(
+            url=self.check_endpoint,
             headers={"Authorization": f'Bearer {config["api_token"]:s}'},
         ).raise_for_status()
         return True, None  # Are we coding in go?

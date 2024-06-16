@@ -8,9 +8,9 @@ from typing import Any, List, Mapping, MutableMapping, Tuple
 from urllib.parse import urlsplit, urlunsplit
 
 import requests
+from security import safe_requests
 
 from .auth import ZohoOauth2Authenticator
-from security import safe_requests
 
 logger = logging.getLogger(__name__)
 

@@ -10,9 +10,9 @@ from airbyte_cdk.sources import AbstractSource
 from airbyte_cdk.sources.streams import Stream
 from airbyte_cdk.sources.streams.http import HttpStream
 from airbyte_cdk.sources.streams.http.auth import NoAuth
+from security import safe_requests
 
 from .constants import url_base
-from security import safe_requests
 
 
 class CurrentWeather(HttpStream):

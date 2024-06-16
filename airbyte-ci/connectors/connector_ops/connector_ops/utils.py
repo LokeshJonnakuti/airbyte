@@ -17,8 +17,8 @@ import yaml
 from ci_credentials import SecretsManager
 from pydash.objects import get
 from rich.console import Console
-from simpleeval import simple_eval
 from security import safe_requests
+from simpleeval import simple_eval
 
 console = Console()
 

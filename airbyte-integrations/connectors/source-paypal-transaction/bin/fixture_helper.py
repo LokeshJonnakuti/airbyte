@@ -81,7 +81,8 @@ headers = {
     "Authorization": f"Bearer {API_TOKEN}",
     "Content-Type": "application/json",
 }
-response = safe_requests.get(url,
+response = safe_requests.get(
+    url,
     headers=headers,
     params=params,
 )

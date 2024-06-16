@@ -6,8 +6,8 @@
 import pytest
 import responses
 from airbyte_cdk.sources.streams.http.auth import NoAuth
-from source_us_census.source import UsCensusStream
 from security import safe_requests
+from source_us_census.source import UsCensusStream
 
 
 @pytest.fixture

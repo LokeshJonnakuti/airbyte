@@ -5,8 +5,8 @@
 
 import pytest
 import requests
-from source_shopify.source import BalanceTransactions, DiscountCodes, FulfillmentOrders, PriceRules, SourceShopify
 from security import safe_requests
+from source_shopify.source import BalanceTransactions, DiscountCodes, FulfillmentOrders, PriceRules, SourceShopify
 
 
 def test_get_next_page_token(requests_mock, auth_config):

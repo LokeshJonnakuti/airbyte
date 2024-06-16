@@ -4,12 +4,13 @@
 
 import logging
 from typing import Any, List, Mapping, Tuple
+
 from airbyte_cdk import AirbyteLogger
 from airbyte_cdk.sources import AbstractSource
 from airbyte_cdk.sources.streams import Stream
 from airbyte_cdk.sources.streams.http.auth import TokenAuthenticator
-from source_freshcaller.streams import CallMetrics, Calls, Teams, Users
 from security import safe_requests
+from source_freshcaller.streams import CallMetrics, Calls, Teams, Users
 
 logger = logging.getLogger("airbyte")
 

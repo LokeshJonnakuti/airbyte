@@ -3,6 +3,7 @@
 #
 
 import pytest
+from security import safe_requests
 from source_zendesk_chat.source import ZendeskAuthentication
 from source_zendesk_chat.streams import (
     Accounts,
@@ -18,7 +19,6 @@ from source_zendesk_chat.streams import (
     Skills,
     Triggers,
 )
-from security import safe_requests
 
 TEST_CONFIG: dict = {
     "start_date": "2020-10-01T00:00:00Z",
