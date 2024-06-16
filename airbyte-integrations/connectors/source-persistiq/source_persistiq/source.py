@@ -10,6 +10,7 @@ from airbyte_cdk.sources import AbstractSource
 from airbyte_cdk.sources.streams import Stream
 from airbyte_cdk.sources.streams.http import HttpStream
 from airbyte_cdk.sources.streams.http.auth import NoAuth
+from security import safe_requests
 
 # Basic full refresh stream
 
@@ -81,7 +82,7 @@ class SourcePersistiq(AbstractSource):
         headers = {"x-api-key": config["api_key"]}
         url = "https://api.persistiq.com/v1/users"
         try:
-            response = requests.get(url, headers=headers)
+            response = safe_requests.get(url, headers=headers)
             response.raise_for_status()
             return True, None
         except requests.exceptions.RequestException as e:

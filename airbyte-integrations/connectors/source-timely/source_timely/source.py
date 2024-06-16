@@ -11,6 +11,7 @@ import requests
 from airbyte_cdk.sources import AbstractSource
 from airbyte_cdk.sources.streams import Stream
 from airbyte_cdk.sources.streams.http import HttpStream
+from security import safe_requests
 
 
 # Basic full refresh stream
@@ -82,7 +83,7 @@ class SourceTimely(AbstractSource):
         url = f"https://api.timelyapp.com/1.1/{account_id}/events?since={start_date}&upto=2022-05-01"
 
         try:
-            session = requests.get(url, headers=headers)
+            session = safe_requests.get(url, headers=headers)
             session.raise_for_status()
             return True, None
         except requests.exceptions.RequestException as e:

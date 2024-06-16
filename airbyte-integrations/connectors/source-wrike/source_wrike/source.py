@@ -13,6 +13,7 @@ from airbyte_cdk.sources.streams import Stream
 from airbyte_cdk.sources.streams.http import HttpStream
 from airbyte_cdk.sources.streams.http.requests_native_auth import TokenAuthenticator
 from pendulum import DateTime
+from security import safe_requests
 
 
 # Basic full refresh stream
@@ -125,7 +126,7 @@ class SourceWrike(AbstractSource):
                 "Accept": "application/json",
             } | TokenAuthenticator(token=config["access_token"]).get_auth_header()
 
-            resp = requests.get(f"https://{config['wrike_instance']}/api/v4/version", headers=headers)
+            resp = safe_requests.get(f"https://{config['wrike_instance']}/api/v4/version", headers=headers)
             resp.raise_for_status()
             return True, None
 

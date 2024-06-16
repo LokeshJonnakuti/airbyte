@@ -13,6 +13,7 @@ from airbyte_cdk.sources.streams import Stream
 from airbyte_cdk.sources.streams.http.auth import HttpAuthenticator
 
 from .streams import QualarooStream, Responses, Surveys
+from security import safe_requests
 
 
 class QualarooAuthenticator(HttpAuthenticator):
@@ -58,7 +59,7 @@ class SourceQualaroo(AbstractSource):
 
             authenticator = self._get_authenticator(config)
 
-            response = requests.get(url, headers=authenticator.get_auth_header())
+            response = safe_requests.get(url, headers=authenticator.get_auth_header())
 
             response.raise_for_status()
             available_surveys = {row.get("id") for row in response.json()}

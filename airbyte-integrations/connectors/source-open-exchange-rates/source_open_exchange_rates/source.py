@@ -13,6 +13,7 @@ from airbyte_cdk.sources.streams import Stream
 from airbyte_cdk.sources.streams.http import HttpStream
 from airbyte_cdk.sources.streams.http.auth import TokenAuthenticator
 from pendulum import DateTime
+from security import safe_requests
 
 
 class OpenExchangeRates(HttpStream, ABC):
@@ -113,7 +114,7 @@ class SourceOpenExchangeRates(AbstractSource):
         try:
             auth = TokenAuthenticator(token=config["app_id"], auth_method="Token").get_auth_header()
 
-            resp = requests.get(f"{OpenExchangeRates.url_base}usage.json", headers=auth)
+            resp = safe_requests.get(f"{OpenExchangeRates.url_base}usage.json", headers=auth)
             status = resp.status_code
 
             logger.info(f"Ping response code: {status}")

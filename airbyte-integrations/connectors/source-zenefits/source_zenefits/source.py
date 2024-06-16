@@ -10,6 +10,7 @@ import requests
 from airbyte_cdk.sources import AbstractSource
 from airbyte_cdk.sources.streams import Stream
 from airbyte_cdk.sources.streams.http import HttpStream
+from security import safe_requests
 
 
 # Basic full refresh stream
@@ -159,7 +160,7 @@ class SourceZenefits(AbstractSource):
         url = "https://api.zenefits.com/core/people"
 
         try:
-            session = requests.get(url, headers=headers)
+            session = safe_requests.get(url, headers=headers)
             session.raise_for_status()
             return True, None
         except requests.exceptions.RequestException as e:

@@ -19,6 +19,7 @@ from pipelines import hacks
 from pipelines.actions import environments
 from pipelines.bases import CIContext, PytestStep, Step, StepResult, StepStatus
 from pipelines.utils import METADATA_FILE_NAME
+from security import safe_requests
 
 
 class VersionCheck(Step, ABC):
@@ -34,7 +35,7 @@ class VersionCheck(Step, ABC):
 
     @cached_property
     def master_metadata(self) -> Optional[dict]:
-        response = requests.get(self.github_master_metadata_url)
+        response = safe_requests.get(self.github_master_metadata_url)
 
         # New connectors will not have a metadata file in master
         if not response.ok:
