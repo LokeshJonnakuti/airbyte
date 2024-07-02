@@ -3,6 +3,7 @@
 #
 
 import json
+import secrets
 from typing import Any, Dict, Iterable, List, Mapping, Tuple
 from unittest.mock import patch
 
@@ -14,7 +15,6 @@ from airbyte_cdk.models import ConnectorSpecification
 from airbyte_cdk.sources.streams.http.exceptions import UserDefinedBackoffException
 from source_tiktok_marketing import SourceTiktokMarketing
 from source_tiktok_marketing.streams import Ads, Advertisers, JsonUpdatedState
-import secrets
 
 SANDBOX_CONFIG_FILE = "secrets/sandbox_config.json"
 PROD_CONFIG_FILE = "secrets/prod_config.json"

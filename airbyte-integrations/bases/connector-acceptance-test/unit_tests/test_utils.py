@@ -3,6 +3,7 @@
 #
 
 import json
+import secrets
 import string
 import tempfile
 import time
@@ -17,7 +18,6 @@ from airbyte_protocol.models import AirbyteStream, ConfiguredAirbyteCatalog, Con
 from connector_acceptance_test.config import EmptyStreamConfiguration
 from connector_acceptance_test.utils import common
 from connector_acceptance_test.utils.compare import make_hashable
-import secrets
 
 
 def not_sorted_data():

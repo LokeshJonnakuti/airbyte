@@ -6,6 +6,7 @@ from __future__ import annotations
 
 import json
 import os
+import secrets
 import string
 import tempfile
 from datetime import datetime
@@ -28,7 +29,6 @@ from airbyte_cdk.models import (
     Type,
 )
 from destination_duckdb import DestinationDuckdb
-import secrets
 
 CONFIG_PATH = "integration_tests/config.json"
 SECRETS_CONFIG_PATH = "secrets/config.json"  # Should contain a valid MotherDuck API token

@@ -3,6 +3,7 @@
 #
 
 import datetime
+import secrets
 from http import HTTPStatus
 from typing import Any, Mapping
 from unittest.mock import MagicMock
@@ -12,7 +13,6 @@ from freezegun import freeze_time
 from source_google_analytics_data_api.source import GoogleAnalyticsDataApiBaseStream
 
 from .utils import read_incremental
-import secrets
 
 
 @pytest.fixture

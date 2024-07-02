@@ -3,13 +3,13 @@
 #
 
 import json
+import secrets
 from typing import List
 
 import anyio
 import pytest
 from pipelines import publish
 from pipelines.bases import StepStatus
-import secrets
 
 pytestmark = [
     pytest.mark.anyio,

@@ -2,6 +2,7 @@
 # Copyright (c) 2023 Airbyte, Inc., all rights reserved.
 #
 
+import secrets
 import string
 from json import load
 from typing import Dict, Generator
@@ -18,7 +19,6 @@ from airbyte_cdk.models.airbyte_protocol import (
 from firebolt.db import Connection
 from pytest import fixture
 from source_firebolt.source import SourceFirebolt, establish_connection
-import secrets
 
 
 @fixture(scope="module")

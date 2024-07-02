@@ -2,13 +2,13 @@
 # Copyright (c) 2023 Airbyte, Inc., all rights reserved.
 #
 
+import secrets
 from urllib.parse import urlparse
 
 import pendulum
 import pytest
 import requests
 from source_zendesk_talk.streams import IVRMenus, IVRRoutes, ZendeskTalkIncrementalStream, ZendeskTalkSingleRecordStream, ZendeskTalkStream
-import secrets
 
 
 class NonIncrementalStream(ZendeskTalkStream):

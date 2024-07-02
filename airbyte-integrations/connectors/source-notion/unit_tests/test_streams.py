@@ -2,6 +2,7 @@
 # Copyright (c) 2023 Airbyte, Inc., all rights reserved.
 #
 
+import secrets
 from http import HTTPStatus
 from unittest.mock import MagicMock
 
@@ -9,7 +10,6 @@ import pytest
 import requests
 from airbyte_cdk.models import SyncMode
 from source_notion.streams import Blocks, NotionStream, Users
-import secrets
 
 
 @pytest.fixture
@@ -146,7 +146,9 @@ def test_user_stream_handles_pagination_correctly(requests_mock):
 
     response_body = {
         "object": "list",
-        "results": [{"id": f"{x}", "object": "user", "type": ["person", "bot"][secrets.SystemRandom().randint(0, 1)]} for x in range(100, 200)],
+        "results": [
+            {"id": f"{x}", "object": "user", "type": ["person", "bot"][secrets.SystemRandom().randint(0, 1)]} for x in range(100, 200)
+        ],
         "next_cursor": "67030467-b97b-4729-8fd6-2fb33d012da4",
         "has_more": True,
         "type": "user",
@@ -155,7 +157,9 @@ def test_user_stream_handles_pagination_correctly(requests_mock):
 
     response_body = {
         "object": "list",
-        "results": [{"id": f"{x}", "object": "user", "type": ["person", "bot"][secrets.SystemRandom().randint(0, 1)]} for x in range(200, 220)],
+        "results": [
+            {"id": f"{x}", "object": "user", "type": ["person", "bot"][secrets.SystemRandom().randint(0, 1)]} for x in range(200, 220)
+        ],
         "next_cursor": None,
         "has_more": False,
         "type": "user",

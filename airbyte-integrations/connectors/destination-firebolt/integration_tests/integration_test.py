@@ -2,6 +2,7 @@
 # Copyright (c) 2023 Airbyte, Inc., all rights reserved.
 #
 
+import secrets
 import string
 from datetime import datetime
 from json import dumps, load
@@ -19,7 +20,6 @@ from airbyte_cdk.models.airbyte_protocol import (
 from destination_firebolt.destination import DestinationFirebolt, establish_connection
 from firebolt.common.exception import FireboltError
 from pytest import fixture, mark, raises
-import secrets
 
 
 @fixture(scope="module")

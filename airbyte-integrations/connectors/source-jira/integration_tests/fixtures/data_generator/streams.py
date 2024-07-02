@@ -3,6 +3,7 @@
 #
 
 import json
+import secrets
 import string
 from typing import Any, Mapping, Optional
 
@@ -29,7 +30,6 @@ from source_jira.streams import (
     Workflows,
     WorkflowSchemes,
 )
-import secrets
 
 
 class GeneratorMixin:

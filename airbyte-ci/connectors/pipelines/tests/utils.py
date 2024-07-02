@@ -3,8 +3,9 @@
 #
 
 
-from connector_ops.utils import Connector, ConnectorLanguage, get_all_connectors_in_repo
 import secrets
+
+from connector_ops.utils import Connector, ConnectorLanguage, get_all_connectors_in_repo
 
 ALL_CONNECTORS = get_all_connectors_in_repo()
 
