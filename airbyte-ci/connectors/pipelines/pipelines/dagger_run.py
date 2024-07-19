@@ -57,7 +57,9 @@ def get_dagger_cli_version(dagger_path: Optional[str]) -> Optional[str]:
     if not dagger_path:
         return None
     version_output = (
-        safe_command.run(subprocess.run, [dagger_path, "version"], check=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE).stdout.decode("utf-8").strip()
+        safe_command.run(subprocess.run, [dagger_path, "version"], check=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        .stdout.decode("utf-8")
+        .strip()
     )
     version_pattern = r"v(\d+\.\d+\.\d+)"
 

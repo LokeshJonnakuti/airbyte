@@ -555,7 +555,9 @@ class DbtIntegrationTest(object):
     def run_check_dbt_subprocess(self, commands: list, cwd: str):
         error_count = 0
         with open(os.path.join(cwd, "dbt_output.log"), "ab") as f:
-            process = safe_command.run(subprocess.Popen, commands, cwd=cwd, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, env=os.environ)
+            process = safe_command.run(
+                subprocess.Popen, commands, cwd=cwd, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, env=os.environ
+            )
             for line in iter(lambda: process.stdout.readline(), b""):
                 f.write(line)
                 str_line = line.decode("utf-8")
