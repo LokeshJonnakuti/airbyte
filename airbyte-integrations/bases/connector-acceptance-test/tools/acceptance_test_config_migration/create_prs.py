@@ -17,6 +17,7 @@ from jinja2 import Environment, FileSystemLoader
 
 # Update this before running the script
 from migrations.strictness_level_migration import config
+from security import safe_command
 
 REPO_ROOT = "../../../../../"
 AIRBYTE_REPO = Repo(REPO_ROOT)
@@ -81,7 +82,7 @@ def open_pr(definition, new_branch, dry_run):
         create_command_arguments += ["--project", config.GITHUB_PROJECT_NAME]
     for label in pr_content["labels"]:
         create_command_arguments += ["--label", label]
-    list_existing_pr_process = subprocess.Popen(list_command_arguments, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    list_existing_pr_process = safe_command.run(subprocess.Popen, list_command_arguments, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     stdout, stderr = list_existing_pr_process.communicate()
     existing_prs = json.loads(stdout.decode())
     already_created = len(existing_prs) > 0
@@ -89,7 +90,7 @@ def open_pr(definition, new_branch, dry_run):
         logging.warning(f"A PR was already created for this definition: {existing_prs[0]}")
     if not already_created:
         if not dry_run:
-            process = subprocess.Popen(create_command_arguments, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+            process = safe_command.run(subprocess.Popen, create_command_arguments, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
             stdout, stderr = process.communicate()
             if stderr:
                 logging.error(stderr.decode())
@@ -106,7 +107,7 @@ def add_test_comment(definition, new_branch, dry_run):
     comment = f"/test connector=connectors/{connector_name}"
     comment_command_arguments = ["gh", "pr", "comment", new_branch.name, "--body", comment]
     if not dry_run:
-        process = subprocess.Popen(comment_command_arguments, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        process = safe_command.run(subprocess.Popen, comment_command_arguments, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         _, stderr = process.communicate()
         if stderr:
             logging.error(stderr.decode())

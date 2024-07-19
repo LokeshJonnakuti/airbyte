@@ -17,6 +17,7 @@ from jinja2 import Environment, FileSystemLoader
 
 # Update this line before running the script
 from migrations.strictness_level_migration import config
+from security import safe_command
 
 logging.basicConfig(level=logging.DEBUG)
 environment = Environment(loader=FileSystemLoader(utils.MIGRATIONS_FOLDER))
@@ -65,7 +66,7 @@ def get_issue_content(source_definition) -> Optional[Dict[Text, Any]]:
 
 def get_existing_issues(issue_content):
     list_command_arguments = ["gh", "issue", "list", "--state", "open", "--search", f"'{issue_content['title']}'", "--json", "url"]
-    list_existing_issue_process = subprocess.Popen(list_command_arguments, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    list_existing_issue_process = safe_command.run(subprocess.Popen, list_command_arguments, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     stdout, stderr = list_existing_issue_process.communicate()
     existing_issues = json.loads(stdout.decode())
     return existing_issues
@@ -98,7 +99,7 @@ def create_issue(source_definition, dry_run=True):
         logging.warning(f"An issue was already created for {source_definition['name']}: {existing_issues[0]}")
     else:
         if not dry_run:
-            process = subprocess.Popen(create_command(issue_content), stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+            process = safe_command.run(subprocess.Popen, create_command(issue_content), stdout=subprocess.PIPE, stderr=subprocess.PIPE)
             stdout, stderr = process.communicate()
             if stderr:
                 logging.error(stderr.decode())
