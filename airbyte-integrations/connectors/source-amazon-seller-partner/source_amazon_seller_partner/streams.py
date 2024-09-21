@@ -24,6 +24,7 @@ from airbyte_cdk.sources.streams.http.http import BODY_REQUEST_METHODS
 from airbyte_cdk.sources.streams.http.rate_limiting import default_backoff_handler
 from airbyte_cdk.sources.utils.transform import TransformConfig, TypeTransformer
 from source_amazon_seller_partner.auth import AWSSignature
+from security import safe_requests
 
 REPORTS_API_VERSION = "2021-06-30"  # 2020-09-04
 ORDERS_API_VERSION = "v0"
@@ -285,7 +286,7 @@ class ReportsAmazonSPStream(Stream, ABC):
         """
         Unpacks a report document
         """
-        report = requests.get(url).content
+        report = safe_requests.get(url).content
         if "compressionAlgorithm" in payload:
             return zlib.decompress(bytearray(report), 15 + 32).decode("iso-8859-1")
         return report.decode("iso-8859-1")

@@ -31,6 +31,7 @@ from .streams import (
     PinterestStream,
     UserAccountAnalytics,
 )
+from security import safe_requests
 
 
 class SourcePinterest(AbstractSource):
@@ -78,7 +79,7 @@ class SourcePinterest(AbstractSource):
         url = f"{PinterestStream.url_base}user_account"
         auth_headers = {"Accept": "application/json", **authenticator.get_auth_header()}
         try:
-            session = requests.get(url, headers=auth_headers)
+            session = safe_requests.get(url, headers=auth_headers)
             session.raise_for_status()
             return True, None
         except requests.exceptions.RequestException as e:

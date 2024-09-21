@@ -6,6 +6,7 @@ import os
 from typing import List
 
 import requests
+from security import safe_requests
 
 
 def get_docker_hub_auth_token() -> str:
@@ -40,6 +41,6 @@ def is_image_on_docker_hub(image_name: str, version: str) -> bool:
     token = get_docker_hub_auth_token()
     headers = {"Authorization": f"JWT {token}"}
     tag_url = f"https://registry.hub.docker.com/v2/repositories/{image_name}/tags/{version}"
-    response = requests.get(tag_url, headers=headers)
+    response = safe_requests.get(tag_url, headers=headers)
 
     return response.ok

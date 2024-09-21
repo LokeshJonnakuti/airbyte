@@ -5,8 +5,6 @@
 
 import base64
 from typing import Any, List, Mapping, Tuple
-
-import requests
 from airbyte_cdk import AirbyteLogger
 from airbyte_cdk.sources import AbstractSource
 from airbyte_cdk.sources.streams import Stream
@@ -14,13 +12,14 @@ from airbyte_cdk.sources.streams.http.auth import TokenAuthenticator
 from requests.auth import AuthBase
 
 from .streams import Automations, Campaigns, EmailActivity, Lists, Reports
+from security import safe_requests
 
 
 class MailChimpAuthenticator:
     @staticmethod
     def get_server_prefix(access_token: str) -> str:
         try:
-            response = requests.get(
+            response = safe_requests.get(
                 "https://login.mailchimp.com/oauth2/metadata", headers={"Authorization": "OAuth {}".format(access_token)}
             )
             return response.json()["dc"]
@@ -56,7 +55,7 @@ class SourceMailchimp(AbstractSource):
     def check_connection(self, logger: AirbyteLogger, config: Mapping[str, Any]) -> Tuple[bool, Any]:
         try:
             authenticator = MailChimpAuthenticator().get_auth(config)
-            requests.get(f"https://{authenticator.data_center}.api.mailchimp.com/3.0/ping", headers=authenticator.get_auth_header())
+            safe_requests.get(f"https://{authenticator.data_center}.api.mailchimp.com/3.0/ping", headers=authenticator.get_auth_header())
             return True, None
         except Exception as e:
             return False, repr(e)

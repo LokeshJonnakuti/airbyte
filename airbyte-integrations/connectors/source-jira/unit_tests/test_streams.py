@@ -3,7 +3,6 @@
 #
 
 import pytest
-import requests
 import responses
 from airbyte_cdk.models import SyncMode
 from airbyte_cdk.utils.traced_exception import AirbyteTracedException
@@ -59,6 +58,7 @@ from source_jira.streams import (
     WorkflowStatuses,
 )
 from source_jira.utils import read_full_refresh
+from security import safe_requests
 
 
 @responses.activate
@@ -525,7 +525,7 @@ def test_board_does_not_support_sprints(config, caplog):
     authenticator = SourceJira().get_authenticator(config=config)
     args = {"authenticator": authenticator, "domain": config["domain"], "projects": config.get("projects", [])}
     stream = Sprints(**args)
-    response = requests.get(url)
+    response = safe_requests.get(url)
     actual = stream.should_retry(response)
     assert actual is False
     assert (

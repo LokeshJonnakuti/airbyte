@@ -11,6 +11,7 @@ from airbyte_cdk.sources.streams import Stream
 from airbyte_cdk.sources.streams.http.requests_native_auth import TokenAuthenticator
 
 from .streams import AlertLogs, AlertRecipients, Alerts, Incidents, Integrations, Services, Teams, Users, UserTeams
+from security import safe_requests
 
 
 # Source
@@ -25,7 +26,7 @@ class SourceOpsgenie(AbstractSource):
             auth = self.get_authenticator(config)
             api_endpoint = f"https://{config['endpoint']}/v2/account"
 
-            response = requests.get(
+            response = safe_requests.get(
                 api_endpoint,
                 headers=auth.get_auth_header(),
             )

@@ -12,6 +12,7 @@ from airbyte_cdk.sources.streams import IncrementalMixin
 from airbyte_cdk.sources.streams.core import package_name_from_class
 from airbyte_cdk.sources.streams.http import HttpStream
 from source_kyve.util import CustomResourceSchemaLoader
+from security import safe_requests
 
 logger = logging.getLogger("airbyte")
 
@@ -116,7 +117,7 @@ class KYVEStream(HttpStream, IncrementalMixin):
         for bundle in bundles:
             storage_id = bundle.get("storage_id")
             # retrieve file from Arweave
-            response_from_arweave = requests.get(f"https://arweave.net/{storage_id}")
+            response_from_arweave = safe_requests.get(f"https://arweave.net/{storage_id}")
 
             if not response.ok:
                 logger.error(f"Reading bundle {storage_id} with status code {response.status_code}")

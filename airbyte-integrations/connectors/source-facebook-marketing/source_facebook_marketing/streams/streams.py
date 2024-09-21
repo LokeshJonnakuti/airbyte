@@ -16,6 +16,7 @@ from facebook_business.adobjects.user import User
 
 from .base_insight_streams import AdsInsights
 from .base_streams import FBMarketingIncrementalStream, FBMarketingReversedIncrementalStream, FBMarketingStream
+from security import safe_requests
 
 logger = logging.getLogger("airbyte")
 
@@ -23,7 +24,7 @@ logger = logging.getLogger("airbyte")
 def fetch_thumbnail_data_url(url: str) -> Optional[str]:
     """Request thumbnail image and return it embedded into the data-link"""
     try:
-        response = requests.get(url)
+        response = safe_requests.get(url)
         if response.status_code == requests.status_codes.codes.OK:
             _type = response.headers["content-type"]
             data = base64.b64encode(response.content)
