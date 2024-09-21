@@ -15,6 +15,7 @@ from airbyte_cdk.sources import AbstractSource
 from airbyte_cdk.sources.streams import Stream
 from airbyte_cdk.sources.streams.http.auth import Oauth2Authenticator
 from airbyte_cdk.utils import AirbyteTracedException
+from security import safe_requests
 from source_google_search_console.exceptions import (
     InvalidSiteURLValidationError,
     UnauthorizedOauthError,
@@ -39,7 +40,6 @@ from source_google_search_console.streams import (
     Sitemaps,
     Sites,
 )
-from security import safe_requests
 
 custom_reports_schema = {
     "type": "array",

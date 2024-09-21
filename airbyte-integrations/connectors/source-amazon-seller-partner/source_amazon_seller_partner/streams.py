@@ -23,8 +23,8 @@ from airbyte_cdk.sources.streams.http.exceptions import DefaultBackoffException,
 from airbyte_cdk.sources.streams.http.http import BODY_REQUEST_METHODS
 from airbyte_cdk.sources.streams.http.rate_limiting import default_backoff_handler
 from airbyte_cdk.sources.utils.transform import TransformConfig, TypeTransformer
-from source_amazon_seller_partner.auth import AWSSignature
 from security import safe_requests
+from source_amazon_seller_partner.auth import AWSSignature
 
 REPORTS_API_VERSION = "2021-06-30"  # 2020-09-04
 ORDERS_API_VERSION = "v0"

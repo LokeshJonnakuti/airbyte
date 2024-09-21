@@ -8,9 +8,9 @@ from typing import Any, ClassVar, List, Mapping
 
 import jwt
 import requests
+from security import safe_requests
 
 from .logger import Logger
-from security import safe_requests
 
 TOKEN_TTL = 3600
 

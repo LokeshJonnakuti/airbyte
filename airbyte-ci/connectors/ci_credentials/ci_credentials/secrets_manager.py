@@ -10,11 +10,12 @@ from glob import glob
 from json.decoder import JSONDecodeError
 from pathlib import Path
 from typing import Any, ClassVar, List, Mapping
+
 import yaml
 from common_utils import GoogleApi, Logger
+from security import safe_requests
 
 from .models import DEFAULT_SECRET_FILE, RemoteSecret, Secret
-from security import safe_requests
 
 DEFAULT_SECRET_FILE_WITH_EXT = DEFAULT_SECRET_FILE + ".json"
 

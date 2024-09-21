@@ -6,6 +6,7 @@
 import pytest
 from airbyte_cdk.sources.streams.http.requests_native_auth import Oauth2Authenticator, TokenAuthenticator
 from airbyte_cdk.utils import AirbyteTracedException
+from security import safe_requests
 from source_linkedin_ads.source import (
     Accounts,
     AccountUsers,
@@ -17,7 +18,6 @@ from source_linkedin_ads.source import (
     SourceLinkedinAds,
 )
 from source_linkedin_ads.streams import LINKEDIN_VERSION_API
-from security import safe_requests
 
 TEST_OAUTH_CONFIG: dict = {
     "start_date": "2021-08-01",

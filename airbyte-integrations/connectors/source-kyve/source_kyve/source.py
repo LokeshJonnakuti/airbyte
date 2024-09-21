@@ -4,11 +4,12 @@
 
 from copy import deepcopy
 from typing import Any, List, Mapping, Tuple
+
 from airbyte_cdk.sources import AbstractSource
 from airbyte_cdk.sources.streams import Stream
+from security import safe_requests
 
 from .stream import KYVEStream
-from security import safe_requests
 
 
 class SourceKyve(AbstractSource):

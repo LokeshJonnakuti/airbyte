@@ -7,6 +7,7 @@ from unittest.mock import patch
 
 import pytest
 import requests
+from security import safe_requests
 from source_recharge.api import (
     Addresses,
     Charges,
@@ -22,7 +23,6 @@ from source_recharge.api import (
     Shop,
     Subscriptions,
 )
-from security import safe_requests
 
 
 # config

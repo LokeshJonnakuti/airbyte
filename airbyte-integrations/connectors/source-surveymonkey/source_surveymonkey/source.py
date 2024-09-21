@@ -12,9 +12,9 @@ from airbyte_cdk.logger import AirbyteLogger
 from airbyte_cdk.sources import AbstractSource
 from airbyte_cdk.sources.streams import Stream
 from airbyte_cdk.sources.streams.http.auth import TokenAuthenticator
+from security import safe_requests
 
 from .streams import Collectors, SurveyCollectors, SurveyPages, SurveyQuestions, SurveyResponses, Surveys
-from security import safe_requests
 
 
 class SourceSurveymonkey(AbstractSource):

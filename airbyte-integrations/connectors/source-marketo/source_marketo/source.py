@@ -17,9 +17,9 @@ from airbyte_cdk.sources.streams import Stream
 from airbyte_cdk.sources.streams.availability_strategy import AvailabilityStrategy
 from airbyte_cdk.sources.streams.http import HttpStream
 from airbyte_cdk.sources.streams.http.auth import Oauth2Authenticator
+from security import safe_requests
 
 from .utils import STRING_TYPES, clean_string, format_value, to_datetime_str
-from security import safe_requests
 
 
 class MarketoStream(HttpStream, ABC):

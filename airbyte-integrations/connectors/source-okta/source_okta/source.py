@@ -13,9 +13,9 @@ from airbyte_cdk.models import SyncMode
 from airbyte_cdk.sources import AbstractSource
 from airbyte_cdk.sources.streams import Stream
 from airbyte_cdk.sources.streams.http import HttpStream
+from security import safe_requests
 
 from .utils import datetime_to_string, delete_milliseconds, get_api_endpoint, get_start_date, initialize_authenticator
-from security import safe_requests
 
 
 class OktaStream(HttpStream, ABC):

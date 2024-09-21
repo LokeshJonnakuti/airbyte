@@ -5,14 +5,15 @@
 
 import base64
 from typing import Any, List, Mapping, Tuple
+
 from airbyte_cdk import AirbyteLogger
 from airbyte_cdk.sources import AbstractSource
 from airbyte_cdk.sources.streams import Stream
 from airbyte_cdk.sources.streams.http.auth import TokenAuthenticator
 from requests.auth import AuthBase
+from security import safe_requests
 
 from .streams import Automations, Campaigns, EmailActivity, Lists, Reports
-from security import safe_requests
 
 
 class MailChimpAuthenticator:

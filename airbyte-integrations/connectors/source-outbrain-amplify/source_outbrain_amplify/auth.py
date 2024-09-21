@@ -3,6 +3,7 @@
 #
 
 from typing import Any, Mapping
+
 from airbyte_cdk.sources.streams.http.auth import TokenAuthenticator
 from requests.auth import HTTPBasicAuth
 from security import safe_requests

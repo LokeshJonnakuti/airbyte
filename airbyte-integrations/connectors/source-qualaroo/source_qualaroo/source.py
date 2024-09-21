@@ -11,9 +11,9 @@ import requests
 from airbyte_cdk.sources import AbstractSource
 from airbyte_cdk.sources.streams import Stream
 from airbyte_cdk.sources.streams.http.auth import HttpAuthenticator
+from security import safe_requests
 
 from .streams import QualarooStream, Responses, Surveys
-from security import safe_requests
 
 
 class QualarooAuthenticator(HttpAuthenticator):
