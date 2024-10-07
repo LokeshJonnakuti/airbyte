@@ -13,6 +13,7 @@
 # python paypal_transaction_generator.py 10 - will generate 10 transactions
 
 import json
+import secrets
 import sys
 from time import sleep
 
@@ -21,7 +22,6 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
-import secrets
 
 # from pprint import pprint
 

@@ -3,6 +3,7 @@
 #
 
 import json
+import secrets
 import sqlite3
 import string
 import tempfile
@@ -23,7 +24,6 @@ from airbyte_cdk.models import (
     Type,
 )
 from destination_sqlite import DestinationSqlite
-import secrets
 
 
 @pytest.fixture(autouse=True)

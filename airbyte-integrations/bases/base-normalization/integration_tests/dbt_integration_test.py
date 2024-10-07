@@ -7,6 +7,7 @@ import json
 import os
 import pathlib
 import re
+import secrets
 import socket
 import string
 import subprocess
@@ -20,7 +21,6 @@ import yaml
 from normalization.destination_type import DestinationType
 from normalization.transform_catalog.transform import read_yaml_config, write_yaml_config
 from normalization.transform_config.transform import TransformConfig
-import secrets
 
 NORMALIZATION_TEST_TARGET = "NORMALIZATION_TEST_TARGET"
 NORMALIZATION_TEST_MSSQL_DB_PORT = "NORMALIZATION_TEST_MSSQL_DB_PORT"

@@ -2,6 +2,7 @@
 # Copyright (c) 2023 Airbyte, Inc., all rights reserved.
 #
 
+import secrets
 from typing import Any, MutableMapping
 from unittest.mock import PropertyMock
 
@@ -38,7 +39,6 @@ from source_freshdesk.streams import (
     Tickets,
     TimeEntries,
 )
-import secrets
 
 
 @pytest.fixture(autouse=True)
