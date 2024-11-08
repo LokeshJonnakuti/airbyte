@@ -82,7 +82,7 @@ class SourceTimely(AbstractSource):
         url = f"https://api.timelyapp.com/1.1/{account_id}/events?since={start_date}&upto=2022-05-01"
 
         try:
-            session = requests.get(url, headers=headers)
+            session = requests.get(url, headers=headers, timeout=60)
             session.raise_for_status()
             return True, None
         except requests.exceptions.RequestException as e:

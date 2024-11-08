@@ -236,14 +236,14 @@ def test_check_stream_state(stream_state, expected):
 
 def test_parse_response_from_empty_json(requests_mock):
     requests_mock.get(STREAM_URL, text="", status_code=403)
-    test_response = requests.get(STREAM_URL)
+    test_response = requests.get(STREAM_URL, timeout=60)
     output = Schedules(**STREAM_ARGS).parse_response(test_response, {})
     assert list(output) == []
 
 
 def test_parse_response(requests_mock):
     requests_mock.get(STREAM_URL, json=TICKET_EVENTS_STREAM_RESPONSE)
-    test_response = requests.get(STREAM_URL)
+    test_response = requests.get(STREAM_URL, timeout=60)
     output = TicketComments(**STREAM_ARGS).parse_response(test_response)
     # get the first parsed element from generator
     parsed_output = list(output)[0]
@@ -396,7 +396,7 @@ class TestSourceZendeskSupportStream:
         stream_name = snake_case(stream.__class__.__name__)
         expected = [{"updated_at": "2022-03-17T16:03:07Z"}]
         requests_mock.get(STREAM_URL, json={stream_name: expected})
-        test_response = requests.get(STREAM_URL)
+        test_response = requests.get(STREAM_URL, timeout=60)
         output = list(stream.parse_response(test_response, None))
         assert expected == output
 
@@ -406,7 +406,7 @@ class TestSourceZendeskSupportStream:
         conditions_any = {"subject": "brand", "title": "Brand"}
         response_json = {"definitions": {"conditions_all": [conditions_all], "conditions_any": [conditions_any]}}
         requests_mock.get(STREAM_URL, json=response_json)
-        test_response = requests.get(STREAM_URL)
+        test_response = requests.get(STREAM_URL, timeout=60)
         output = list(stream.parse_response(test_response, None))
         expected_records = [
             {"condition": "all", "subject": "number_of_incidents", "title": "Number of incidents"},
@@ -540,7 +540,7 @@ class TestSourceZendeskSupportFullRefreshStream:
         stream = stream_cls(**STREAM_ARGS)
         stream_name = snake_case(stream.__class__.__name__)
         requests_mock.get(STREAM_URL, json={stream_name: {}})
-        test_response = requests.get(STREAM_URL)
+        test_response = requests.get(STREAM_URL, timeout=60)
         output = stream.next_page_token(test_response)
         assert output is None
 
@@ -664,7 +664,7 @@ class TestSourceZendeskSupportCursorPaginationStream:
     def test_next_page_token(self, requests_mock, stream_cls, response, expected):
         stream = stream_cls(**STREAM_ARGS)
         requests_mock.get(STREAM_URL, json=response)
-        test_response = requests.get(STREAM_URL)
+        test_response = requests.get(STREAM_URL, timeout=60)
         output = stream.next_page_token(test_response)
         assert output == expected
 
@@ -747,7 +747,7 @@ class TestSourceZendeskIncrementalExportStream:
         stream = stream_cls(**STREAM_ARGS)
         stream_name = snake_case(stream.__class__.__name__)
         requests_mock.get(STREAM_URL, json={stream_name: {}})
-        test_response = requests.get(STREAM_URL)
+        test_response = requests.get(STREAM_URL, timeout=60)
         output = stream.next_page_token(test_response)
         assert output is None
 
@@ -783,7 +783,7 @@ class TestSourceZendeskIncrementalExportStream:
         stream_name = snake_case(stream.__class__.__name__)
         expected = [{"updated_at": "2022-03-17T16:03:07Z"}]
         requests_mock.get(STREAM_URL, json={stream_name: expected})
-        test_response = requests.get(STREAM_URL)
+        test_response = requests.get(STREAM_URL, timeout=60)
         output = list(stream.parse_response(test_response))
         assert expected == output
 
@@ -816,7 +816,7 @@ class TestSourceZendeskSupportTicketEventsExportStream:
         stream = stream_cls(**STREAM_ARGS)
         stream_name = snake_case(stream.__class__.__name__)
         requests_mock.get(STREAM_URL, json={stream_name: []})
-        test_response = requests.get(STREAM_URL)
+        test_response = requests.get(STREAM_URL, timeout=60)
         output = list(stream.parse_response(test_response))
         assert output == []
 

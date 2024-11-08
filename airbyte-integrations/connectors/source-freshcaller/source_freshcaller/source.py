@@ -29,7 +29,7 @@ class SourceFreshcaller(AbstractSource):
         auth.update({"Content-Type": "application/json"})
 
         try:
-            session = requests.get(url, headers=auth)
+            session = requests.get(url, headers=auth, timeout=60)
             session.raise_for_status()
             return True, None
         except Exception as e:

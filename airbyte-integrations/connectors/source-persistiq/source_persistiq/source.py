@@ -81,7 +81,7 @@ class SourcePersistiq(AbstractSource):
         headers = {"x-api-key": config["api_key"]}
         url = "https://api.persistiq.com/v1/users"
         try:
-            response = requests.get(url, headers=headers)
+            response = requests.get(url, headers=headers, timeout=60)
             response.raise_for_status()
             return True, None
         except requests.exceptions.RequestException as e:

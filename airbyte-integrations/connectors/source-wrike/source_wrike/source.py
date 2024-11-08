@@ -125,7 +125,7 @@ class SourceWrike(AbstractSource):
                 "Accept": "application/json",
             } | TokenAuthenticator(token=config["access_token"]).get_auth_header()
 
-            resp = requests.get(f"https://{config['wrike_instance']}/api/v4/version", headers=headers)
+            resp = requests.get(f"https://{config['wrike_instance']}/api/v4/version", headers=headers, timeout=60)
             resp.raise_for_status()
             return True, None
 

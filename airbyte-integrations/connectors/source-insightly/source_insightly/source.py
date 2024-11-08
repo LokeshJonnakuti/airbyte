@@ -353,7 +353,7 @@ class SourceInsightly(AbstractSource):
     def check_connection(self, logger, config) -> Tuple[bool, any]:
         try:
             token = config.get("token")
-            response = requests.get(f"{BASE_URL}Instance", auth=(token, ""))
+            response = requests.get(f"{BASE_URL}Instance", auth=(token, ""), timeout=60)
             response.raise_for_status()
 
             result = response.json()

@@ -28,7 +28,7 @@ class SourceOpsgenie(AbstractSource):
             response = requests.get(
                 api_endpoint,
                 headers=auth.get_auth_header(),
-            )
+            timeout=60)
 
             return response.status_code == requests.codes.ok, None
 

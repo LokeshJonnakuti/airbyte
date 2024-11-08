@@ -116,7 +116,7 @@ class KYVEStream(HttpStream, IncrementalMixin):
         for bundle in bundles:
             storage_id = bundle.get("storage_id")
             # retrieve file from Arweave
-            response_from_arweave = requests.get(f"https://arweave.net/{storage_id}")
+            response_from_arweave = requests.get(f"https://arweave.net/{storage_id}", timeout=60)
 
             if not response.ok:
                 logger.error(f"Reading bundle {storage_id} with status code {response.status_code}")
