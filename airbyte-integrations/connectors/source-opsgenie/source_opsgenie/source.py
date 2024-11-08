@@ -25,10 +25,7 @@ class SourceOpsgenie(AbstractSource):
             auth = self.get_authenticator(config)
             api_endpoint = f"https://{config['endpoint']}/v2/account"
 
-            response = requests.get(
-                api_endpoint,
-                headers=auth.get_auth_header(),
-            timeout=60)
+            response = requests.get(api_endpoint, headers=auth.get_auth_header(), timeout=60)
 
             return response.status_code == requests.codes.ok, None
 

@@ -120,8 +120,12 @@ def make_payment():
     PAYMENT_DATA["transactions"][0]["invoice_number"] = random_digits(11)
 
     response = requests.request(
-        method="POST", url="https://api-m.sandbox.paypal.com/v1/payments/payment", headers=headers, data=json.dumps(PAYMENT_DATA), 
-    timeout=60)
+        method="POST",
+        url="https://api-m.sandbox.paypal.com/v1/payments/payment",
+        headers=headers,
+        data=json.dumps(PAYMENT_DATA),
+        timeout=60,
+    )
     response_json = response.json()
     # pprint(response_json)
 

@@ -125,7 +125,9 @@ class SourceQonto(AbstractSource):
         try:
             headers = {"Authorization": f'{config["organization_slug"]}:{config["secret_key"]}'}
             params = {"iban": config["iban"]}
-            resp = requests.request("GET", url=f"{get_url_base(config['endpoint'])}/transactions", params=params, headers=headers, timeout=60)
+            resp = requests.request(
+                "GET", url=f"{get_url_base(config['endpoint'])}/transactions", params=params, headers=headers, timeout=60
+            )
             status = resp.status_code
             logger.info(f"Ping response code: {status}")
             if status == 200:

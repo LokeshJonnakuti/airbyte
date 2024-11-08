@@ -182,10 +182,7 @@ class SourceAdjust(AbstractSource):
         :return: (True, None) on connecton to the API successfully,
                  (False, error) otherwise.
         """
-        requests.get(
-            url=self.check_endpoint,
-            headers={"Authorization": f'Bearer {config["api_token"]:s}'},
-        timeout=60).raise_for_status()
+        requests.get(url=self.check_endpoint, headers={"Authorization": f'Bearer {config["api_token"]:s}'}, timeout=60).raise_for_status()
         return True, None  # Are we coding in go?
 
     def streams(self, config: Mapping[str, Any]) -> List[Stream]:

@@ -33,13 +33,7 @@ headers = {
     "Accept-Language": "en_US",
 }
 
-response = requests.request(
-    method="POST",
-    url=token_refresh_endpoint,
-    data=data,
-    headers=headers,
-    auth=(client_id, secret),
-timeout=60)
+response = requests.request(method="POST", url=token_refresh_endpoint, data=data, headers=headers, auth=(client_id, secret), timeout=60)
 response_json = response.json()
 print(response_json)
 API_TOKEN = response_json["access_token"]
@@ -80,10 +74,6 @@ headers = {
     "Authorization": f"Bearer {API_TOKEN}",
     "Content-Type": "application/json",
 }
-response = requests.get(
-    url,
-    headers=headers,
-    params=params,
-timeout=60)
+response = requests.get(url, headers=headers, params=params, timeout=60)
 
 pprint(response.json())

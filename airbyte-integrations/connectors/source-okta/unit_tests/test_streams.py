@@ -261,7 +261,11 @@ class TestStreamGroupMembers:
     def test_group_members_parse_response(self, requests_mock, patch_base_class, group_members_instance, url_base, api_url, start_date):
         stream = GroupMembers(url_base=url_base, start_date=start_date)
         requests_mock.get(f"{api_url}", json=[group_members_instance])
-        inputs = {"response": requests.get(f"{api_url}", timeout=60), "stream_state": MagicMock(), "stream_slice": {"group_id": "test_group_id"}}
+        inputs = {
+            "response": requests.get(f"{api_url}", timeout=60),
+            "stream_state": MagicMock(),
+            "stream_slice": {"group_id": "test_group_id"},
+        }
         assert list(stream.parse_response(**inputs)) == [group_members_instance]
 
     def test_group_members_request_params_with_latest_entry(self, patch_base_class, group_members_instance, url_base, api_url, start_date):
@@ -297,7 +301,11 @@ class TestStreamGroupRoleAssignment:
     ):
         stream = GroupRoleAssignments(url_base=url_base, start_date=start_date)
         requests_mock.get(f"{api_url}", json=[group_role_assignments_instance])
-        inputs = {"response": requests.get(f"{api_url}", timeout=60), "stream_state": MagicMock(), "stream_slice": {"group_id": "test_group_id"}}
+        inputs = {
+            "response": requests.get(f"{api_url}", timeout=60),
+            "stream_state": MagicMock(),
+            "stream_slice": {"group_id": "test_group_id"},
+        }
         assert list(stream.parse_response(**inputs)) == [group_role_assignments_instance]
 
     def test_group_role_assignments_slice_stream(
@@ -350,7 +358,11 @@ class TestStreamUserRoleAssignment:
     ):
         stream = UserRoleAssignments(url_base=url_base, start_date=start_date)
         requests_mock.get(f"{api_url}", json=[user_role_assignments_instance])
-        inputs = {"response": requests.get(f"{api_url}", timeout=60), "stream_state": MagicMock(), "stream_slice": {"user_id": "test_user_id"}}
+        inputs = {
+            "response": requests.get(f"{api_url}", timeout=60),
+            "stream_state": MagicMock(),
+            "stream_slice": {"user_id": "test_user_id"},
+        }
         assert list(stream.parse_response(**inputs)) == [user_role_assignments_instance]
 
     def test_user_role_assignments_slice_stream(
